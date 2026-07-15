@@ -38,6 +38,8 @@ import {
   Brain,
   LineChart,
   Cpu,
+  TrendingUp,
+  Quote,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -47,32 +49,50 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
 
 /* ============================================================================
- * REPLACEABLE CONTENT — update the PROFILE object to personalise everything.
- * Replace placeholder image / resume / socials / research / projects, etc.
+ * PROFILE — Bhavya Mohan
  * ==========================================================================*/
 const PROFILE = {
-  name: 'Your Name',
-  headline: 'Economics Researcher • Data Analyst • AI Workflow Developer',
+  name: 'Bhavya Mohan',
+  headline: 'Economics Undergraduate • Empirical Research (R, Python) • Labour Economics • Applied Econometrics • Causal Inference',
   short:
-    'I build data-driven research and AI workflows that turn economic theory into practical insight.',
-  location: 'Bengaluru, India',
-  email: 'you@example.com',
-  bio: `I am an economics researcher and data analyst who loves turning messy data into clear stories. My work sits at the intersection of applied econometrics, statistical modelling and modern AI tooling — combining rigorous quantitative methods with pragmatic engineering. I publish research, ship production dashboards, and prototype AI workflows that help teams reason about complex problems faster.`,
+    'Economics researcher building reproducible empirical research and AI-powered research workflows using econometrics, statistical programming and machine learning.',
+  location: 'Delhi, India',
+  email: 'mohanbhavya98@gmail.com',
+  bio: [
+    `I am an undergraduate student of Economics (Honours) at Sri Guru Tegh Bahadur Khalsa College, University of Delhi, with a deep interest in empirical labour economics, applied econometrics and causal inference. My research primarily uses large nationally representative datasets — particularly the Periodic Labour Force Survey (PLFS) — to study human capital, returns to education, and the structure of India’s labour market.`,
+    `My current research portfolio examines the returns to education in India across successive rounds of the PLFS using progressively more sophisticated econometric methods — Ordinary Least Squares, Instrumental Variables, and the Heckman Two-Step Sample Selection Model. Alongside labour economics, I have also worked on macroeconomic questions using time-series data from the Federal Reserve Economic Database (FRED), including an empirical re-examination of the Expectations-Augmented Phillips Curve in the post-pandemic era.`,
+    `Beyond traditional empirical work, I build AI-powered research workflows and quantitative finance projects: multi-agent research assistants, retrieval-augmented systems for literature reviews, Hidden Markov Model based macro regime detection, and derivative pricing pipelines. I write reproducible research in Python and R, and I strongly believe in open science, evidence-based policymaking, and making empirical findings transparent and replicable.`,
+    `I am preparing for graduate study in Economics with the goal of contributing rigorous, policy-relevant scholarship at the intersection of labour economics, computational economics, and applied econometrics.`,
+  ],
   objective:
-    'Pursue graduate-level research in applied economics and computational social science, contributing to reproducible, policy-relevant scholarship.',
-  currentEducation: 'B.A. (Hons.) Economics — (Your University), Graduating 2026',
-  interests: ['Labour Economics', 'Development Economics', 'Applied Econometrics', 'AI for Research', 'Causal Inference'],
-  expertise: ['Statistical Modelling', 'Data Pipelines', 'Research Writing', 'LLM Workflows', 'Dashboarding'],
-
-  // REPLACE: put your files inside /app/public/ and update these paths.
-  profileImage: 'https://images.unsplash.com/photo-1607503873903-c5e95f80d7b9?crop=entropy&cs=srgb&fm=jpg&q=85&w=800',
-  resumeUrl: '/resume.pdf',
+    'Pursue graduate research in Economics with interests in Labour Economics, Applied Econometrics, Causal Inference, Computational Economics and Quantitative Finance.',
+  currentEducation: 'B.A. (Hons.) Economics — Sri Guru Tegh Bahadur Khalsa College, University of Delhi (Expected 2027)',
+  interests: [
+    'Labour Economics',
+    'Applied Econometrics',
+    'Causal Inference',
+    'Macroeconomics',
+    'Development Economics',
+    'Machine Learning',
+    'AI for Research',
+    'Quantitative Finance',
+    'Financial Econometrics',
+    'Research Automation',
+  ],
+  expertise: [
+    'Empirical Research',
+    'Applied Econometrics',
+    'Statistical Programming',
+    'Economic Data Analysis',
+    'Research Writing',
+    'Machine Learning',
+  ],
+  profileImage: '/bhavya.jpeg',
+  resumeUrl: '/CV_Bhavya_Mohan.pdf',
   socials: {
-    github: 'https://github.com/yourhandle',
-    linkedin: 'https://linkedin.com/in/yourhandle',
-    scholar: 'https://scholar.google.com/citations?user=xxxxx',
-    ssrn: 'https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=xxxxx',
-    website: 'https://yourdomain.com',
+    github: 'https://github.com/mohanbhavya98',
+    linkedin: 'https://www.linkedin.com/in/bhavya-mohan-94998930b?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    ssrn: 'https://hq.ssrn.com/submissions/MyPapers.cfm?partid=11212508',
   },
 };
 
@@ -89,82 +109,289 @@ const NAV_LINKS = [
   { id: 'contact', label: 'Contact' },
 ];
 
+/* ============================================================================
+ * RESEARCH — chronological, showing evolution of methods.
+ * ==========================================================================*/
 const RESEARCH = [
   {
-    title: 'Impact of Automation on Labour Market Outcomes in Emerging Economies',
+    year: '2024',
+    title:
+      'The Resurrection of the Trade-Off: An Empirical Re-examination of the Expectations-Augmented Phillips Curve in the Post-Pandemic Era',
+    status: 'Completed',
+    statusTone: 'blue',
+    tag: 'Early Research Project',
+    venue: 'Independent Working Paper',
+    area: 'Macroeconomics • Monetary Economics • Time-Series Econometrics',
     abstract:
-      'A panel-data analysis of how automation intensity affects wage growth, employment composition, and skill premia across 18 emerging economies (2005–2022).',
-    status: 'Under Review',
-    venue: 'Journal of Development Economics (Working Paper)',
-    tech: ['Panel Data', 'Fixed Effects', 'Stata', 'R'],
-    link: '#',
-    pdf: '#',
+      'This paper — my first independent empirical study — revisits the Expectations-Augmented Phillips Curve using post-pandemic macroeconomic data to investigate whether the classical inflation–unemployment trade-off has re-emerged after the COVID-19 shock. Estimating the Phillips relation across two distinct macroeconomic regimes (post-2008 and post-pandemic) using U.S. monthly data from the Federal Reserve Economic Database (FRED), the study documents a substantial structural break: the slope of the Phillips Curve has steepened noticeably in the recent recovery, implying that inflationary pressures now respond more strongly to labour-market slack than they did during the low-inflation decade preceding the pandemic. While written largely as a learning exercise during the early phase of my research training, this paper laid the methodological foundation for the empirical work that followed — particularly the use of structural break tests, expectations dynamics, and reproducible time-series pipelines.',
+    methods: ['Time-Series Regression', 'Expectations-Augmented Phillips Curve', 'Structural Break Analysis'],
+    dataset: 'Federal Reserve Economic Data (FRED)',
+    keywords: ['Macroeconomics', 'Phillips Curve', 'Inflation', 'Unemployment', 'Federal Reserve', 'Monetary Policy', 'Time Series'],
+    links: { paper: null, pdf: null, code: null },
   },
   {
-    title: 'LLM-Assisted Literature Reviews: A Reproducible Framework',
+    year: '2025',
+    title:
+      'Returns to Education and Labour Market Segmentation in India: Evidence from the Periodic Labour Force Survey (2019–20)',
+    status: 'Presented • Under Review',
+    statusTone: 'amber',
+    tag: 'Conference Paper',
+    venue: 'International Conference, Lady Shri Ram College, University of Delhi — currently under review at the Ramjas College Student Economics Journal',
+    area: 'Labour Economics • Applied Econometrics',
     abstract:
-      'Proposes a reproducible pipeline that uses large language models to accelerate systematic literature reviews without compromising academic rigour.',
-    status: 'Published',
+      'This paper studies how the segmented structure of India’s labour market shapes the private economic returns to education, using nationally representative microdata from the Periodic Labour Force Survey (PLFS) 2019–20. Building on the Mincer earnings framework, I estimate wage equations for formally and informally employed workers separately, and I test whether comparable levels of schooling generate systematically different returns depending on the sector of employment. The results indicate that returns to education are significantly larger in the formal sector, consistent with a dual labour-market interpretation of Indian wage determination. The paper argues that education-policy debates in India cannot be understood in isolation from the structural composition of employment, and that models of human-capital accumulation must be conditioned on labour-market segmentation. This work represents my transition into empirical labour economics and was presented at the International Conference organised by the Department of Economics, Lady Shri Ram College, University of Delhi.',
+    methods: ['Ordinary Least Squares', 'Mincer Earnings Equation', 'Labour Market Segmentation', 'Wage Regression'],
+    dataset: 'PLFS 2019–20',
+    keywords: ['Labour Economics', 'Returns to Education', 'Human Capital', 'PLFS', 'Formal Sector', 'Informal Sector', 'Applied Econometrics'],
+    links: { paper: null, pdf: null, code: null },
+  },
+  {
+    year: '2025',
+    title:
+      'Returns to Education in India: A Gender-Based Analysis using Instrumental Variables (PLFS 2023–24)',
+    status: 'Published • SSRN',
+    statusTone: 'emerald',
+    tag: 'Working Paper',
     venue: 'SSRN Working Paper Series',
-    tech: ['LLMs', 'Python', 'PRISMA', 'RAG'],
-    link: '#',
-    pdf: '#',
+    area: 'Applied Econometrics • Causal Inference • Labour Economics',
+    abstract:
+      'This paper extends my earlier PLFS-based work by explicitly confronting the endogeneity of education in Mincerian wage regressions. Using PLFS 2023–24 microdata, I employ parental education as an instrument for individual schooling in a Two-Stage Least Squares framework, allowing me to identify a causal effect of education on log wages rather than a purely correlational one. The paper further examines the heterogeneity of returns across gender and employment categories through interaction models, offering evidence on how the private returns to schooling differ between men and women, and between workers in different segments of the labour market. This represents my first fully-fledged causal-inference study in labour economics and marks a clear methodological step forward from the OLS-based analysis of the 2019–20 round.',
+    methods: ['Instrumental Variables (IV)', 'Two-Stage Least Squares (2SLS)', 'Causal Inference', 'Interaction Models'],
+    dataset: 'PLFS 2023–24',
+    keywords: ['Applied Econometrics', 'Instrumental Variables', 'Causal Inference', 'Returns to Education', 'Gender Wage Gap', 'Labour Economics', 'PLFS'],
+    links: { paper: PROFILE.socials.ssrn, pdf: PROFILE.socials.ssrn, code: null },
   },
   {
-    title: 'Behavioural Nudges and Financial Literacy Among College Students',
+    year: '2025',
+    title:
+      'Returns to Education in India using the Heckman Two-Step Sample Selection Model (PLFS 2023–24)',
+    status: 'Under Review',
+    statusTone: 'amber',
+    tag: 'Journal Submission',
+    venue: 'Berkeley Undergraduate Economics Journal',
+    area: 'Labour Economics • Applied Econometrics • Sample Selection',
     abstract:
-      'An RCT-inspired study examining the effect of light-touch behavioural nudges on savings behaviour and financial literacy of undergraduate students.',
-    status: 'Presented',
-    venue: 'National Economics Conference 2024',
-    tech: ['RCT', 'ANOVA', 'Python', 'Survey Design'],
-    link: '#',
-    pdf: '#',
+      'This paper represents the latest and methodologically most demanding stage of my research programme on returns to education in India. Using PLFS 2023–24 microdata, I estimate wage equations that explicitly model the decision to participate in the labour market before estimating wages, using the Heckman Two-Step Sample Selection Model. I compare conventional OLS estimates against selection-corrected estimates and further investigate gender heterogeneity through separate Heckman models for men and women, as well as interaction specifications on the pooled sample. The results suggest that ignoring sample-selection bias meaningfully distorts estimates of the returns to schooling — particularly for women, whose observed wages are heavily conditioned on participation. The paper contributes to the empirical literature on human capital in developing economies by providing selection-corrected estimates that are more consistent than the OLS and IV benchmarks typically used in the Indian context.',
+    methods: ['Heckman Two-Step Selection Model', 'Sample Selection Bias', 'Probit Model', 'OLS Comparison', 'Gender Interaction Models'],
+    dataset: 'PLFS 2023–24',
+    keywords: ['Labour Economics', 'Applied Econometrics', 'Sample Selection', 'Heckman Model', 'Human Capital', 'Gender Wage Gap', 'PLFS'],
+    links: { paper: null, pdf: null, code: null },
   },
 ];
 
+const RESEARCH_JOURNEY = [
+  { label: 'Macroeconomics', detail: 'Time-series analysis of the Phillips Curve (FRED)' },
+  { label: 'Labour Economics', detail: 'Mincerian wage equations & market segmentation (PLFS 2019–20)' },
+  { label: 'Applied Econometrics', detail: 'Formal vs. informal returns to schooling' },
+  { label: 'Causal Inference', detail: 'Instrumental Variables & 2SLS (PLFS 2023–24)' },
+  { label: 'Selection Models', detail: 'Heckman Two-Step correction & gender heterogeneity' },
+];
+
+/* ============================================================================
+ * PROJECTS
+ * ==========================================================================*/
 const PROJECTS = [
-  { name: 'econ-dash', description: 'Interactive dashboard visualising key macroeconomic indicators (GDP, CPI, unemployment) with forecasting overlays.', tech: ['Next.js', 'Recharts', 'Python', 'FRED API'], github: 'https://github.com/yourhandle/econ-dash', demo: 'https://econ-dash.example.com' },
-  { name: 'ai-lit-reviewer', description: 'LLM-powered research assistant that ingests PDFs, extracts key findings, and generates structured literature notes.', tech: ['Python', 'LangChain', 'FastAPI', 'RAG'], github: 'https://github.com/yourhandle/ai-lit-reviewer', demo: null },
-  { name: 'wage-panel-analysis', description: 'Reproducible pipeline for cleaning and analysing large multi-country wage panels with automated diagnostics.', tech: ['R', 'plm', 'DuckDB', 'Quarto'], github: 'https://github.com/yourhandle/wage-panel-analysis', demo: null },
-  { name: 'micro-elasticity-lab', description: 'A teaching toolkit for microeconomics: simulate demand curves, elasticity, and welfare in the browser.', tech: ['React', 'D3', 'TypeScript'], github: 'https://github.com/yourhandle/micro-elasticity-lab', demo: 'https://micro-lab.example.com' },
-  { name: 'policy-scraper', description: 'Scrapes and structures policy documents from Indian ministries into an analysis-ready dataset.', tech: ['Python', 'Playwright', 'MongoDB'], github: 'https://github.com/yourhandle/policy-scraper', demo: null },
-  { name: 'gpt-workflow-kit', description: 'A small library of composable prompt templates + evaluation harness for reproducible AI workflows.', tech: ['TypeScript', 'OpenAI', 'Vitest'], github: 'https://github.com/yourhandle/gpt-workflow-kit', demo: null },
+  {
+    name: 'Macro Regime Detection using Hidden Markov Models',
+    description:
+      'A quantitative-macro pipeline that classifies U.S. macroeconomic states (expansion, slowdown, recession, recovery) directly from macro time-series using Gaussian Hidden Markov Models. Includes state-conditional summary statistics and regime-switching diagnostics.',
+    tech: ['Python', 'Machine Learning', 'HMM', 'Finance', 'Time Series'],
+    github: 'https://github.com/mohanbhavya98',
+    demo: null,
+  },
+  {
+    name: 'Quantitative Equities Research & Derivative Pricing Pipeline',
+    description:
+      'End-to-end quant research toolkit covering CAPM and multi-factor pricing, portfolio optimisation, and Black–Scholes derivative pricing with risk metrics (VaR, Sharpe, drawdowns). Built as a reproducible research pipeline.',
+    tech: ['Python', 'Portfolio Optimisation', 'Black–Scholes', 'CAPM', 'Factor Models', 'Risk Metrics'],
+    github: 'https://github.com/mohanbhavya98',
+    demo: null,
+  },
+  {
+    name: 'Returns to Education Interactive Dashboard',
+    description:
+      'A reproducible Quarto dashboard visualising the returns-to-education results from the PLFS 2019–20 and 2023–24 studies — including OLS, IV, and Heckman-corrected estimates by gender and employment category.',
+    tech: ['Python', 'R', 'Quarto', 'Econometrics'],
+    github: 'https://github.com/mohanbhavya98',
+    demo: null,
+  },
+  {
+    name: 'AI Research Assistant (Multi-Agent Workflow)',
+    description:
+      'A multi-agent system that assists with academic research: literature retrieval, structured note extraction, RAG-based question answering over papers, and draft-writing prompts — all with an emphasis on reproducibility and citation traceability.',
+    tech: ['Python', 'OpenAI', 'RAG', 'Multi-Agent Systems', 'Prompt Engineering'],
+    github: 'https://github.com/mohanbhavya98',
+    demo: null,
+  },
+  {
+    name: 'Research Portfolio Website',
+    description:
+      'This website. A modern, animated research portfolio built to showcase publications, working papers, and quantitative projects — designed for graduate-school applications and academic outreach.',
+    tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+    github: 'https://github.com/mohanbhavya98',
+    demo: null,
+  },
+  {
+    name: 'Additional Research Projects',
+    description:
+      'Ongoing empirical projects in causal inference, difference-in-differences policy evaluation, and computational macroeconomics. Details will be published as manuscripts are completed.',
+    tech: ['DiD', 'Causal Inference', 'Computational Macro'],
+    github: 'https://github.com/mohanbhavya98',
+    demo: null,
+    comingSoon: true,
+  },
 ];
 
+/* ============================================================================
+ * SKILLS
+ * ==========================================================================*/
 const SKILLS = [
-  { group: 'Programming', icon: Code2, items: [ { name: 'Python', level: 92 }, { name: 'R', level: 85 }, { name: 'SQL', level: 80 } ] },
-  { group: 'Data Science', icon: Database, items: [ { name: 'Pandas', level: 92 }, { name: 'NumPy', level: 88 }, { name: 'Matplotlib', level: 85 }, { name: 'Scikit-learn', level: 80 } ] },
-  { group: 'Statistics & Economics', icon: LineChart, items: [ { name: 'Econometrics', level: 90 }, { name: 'Microeconomics', level: 90 }, { name: 'Macroeconomics', level: 82 }, { name: 'Labour Economics', level: 85 }, { name: 'Development Economics', level: 82 } ] },
-  { group: 'Data Visualization', icon: BarChart3, items: [ { name: 'Power BI', level: 82 }, { name: 'Excel', level: 90 } ] },
-  { group: 'Research', icon: BookOpen, items: [ { name: 'Literature Review', level: 92 }, { name: 'Academic Writing', level: 88 }, { name: 'Data Collection', level: 85 }, { name: 'Statistical Analysis', level: 88 } ] },
-  { group: 'Development', icon: Cpu, items: [ { name: 'HTML', level: 88 }, { name: 'CSS', level: 82 }, { name: 'JavaScript', level: 78 }, { name: 'Git', level: 85 }, { name: 'GitHub', level: 88 } ] },
+  { group: 'Programming', icon: Code2, items: [
+    { name: 'Python', level: 92 },
+    { name: 'R', level: 88 },
+    { name: 'SQL', level: 78 },
+    { name: 'JavaScript', level: 72 },
+    { name: 'HTML / CSS', level: 78 },
+    { name: 'Git / GitHub', level: 85 },
+  ]},
+  { group: 'Econometrics', icon: LineChart, items: [
+    { name: 'OLS Regression', level: 94 },
+    { name: 'Instrumental Variables', level: 88 },
+    { name: 'Heckman Selection', level: 86 },
+    { name: 'Panel Data', level: 78 },
+    { name: 'Difference-in-Differences', level: 78 },
+    { name: 'Hypothesis Testing', level: 88 },
+  ]},
+  { group: 'Machine Learning', icon: Brain, items: [
+    { name: 'Scikit-learn', level: 82 },
+    { name: 'Hidden Markov Models', level: 78 },
+    { name: 'Regression', level: 88 },
+    { name: 'Classification', level: 78 },
+    { name: 'Clustering', level: 74 },
+  ]},
+  { group: 'Data Analysis', icon: Database, items: [
+    { name: 'Pandas', level: 92 },
+    { name: 'NumPy', level: 88 },
+    { name: 'Matplotlib', level: 85 },
+    { name: 'Seaborn', level: 82 },
+    { name: 'Power BI', level: 74 },
+    { name: 'Excel', level: 90 },
+  ]},
+  { group: 'Research', icon: BookOpen, items: [
+    { name: 'Academic Writing', level: 90 },
+    { name: 'Literature Review', level: 90 },
+    { name: 'LaTeX', level: 84 },
+    { name: 'Quarto', level: 82 },
+    { name: 'Policy Analysis', level: 80 },
+  ]},
+  { group: 'AI & Automation', icon: Cpu, items: [
+    { name: 'OpenAI APIs', level: 84 },
+    { name: 'Prompt Engineering', level: 88 },
+    { name: 'AI Agents', level: 82 },
+    { name: 'Retrieval-Augmented Generation (RAG)', level: 80 },
+    { name: 'Research Automation', level: 84 },
+  ]},
 ];
 
+/* ============================================================================
+ * EDUCATION
+ * ==========================================================================*/
 const EDUCATION = [
-  { institution: 'Your University', degree: 'B.A. (Hons.) Economics', duration: '2023 — 2026 (Expected)', gpa: 'GPA: 3.9 / 4.0', coursework: ['Advanced Microeconomics', 'Econometrics I & II', 'Development Economics', 'Statistics for Economists', 'Machine Learning'] },
-  { institution: 'Your Senior Secondary School', degree: 'Higher Secondary — Commerce with Mathematics', duration: '2021 — 2023', gpa: 'Percentage: 94%', coursework: ['Mathematics', 'Economics', 'Business Studies', 'Accountancy'] },
+  {
+    institution: 'Sri Guru Tegh Bahadur Khalsa College, University of Delhi',
+    degree: 'B.A. (Hons.) Economics',
+    duration: '2024 — 2027 (Expected)',
+    gpa: 'Current CGPA: 8.27 / 10',
+    coursework: ['Microeconomics', 'Macroeconomics', 'Mathematics for Economics', 'Statistics', 'Econometrics'],
+  },
+  {
+    institution: 'Indian Institute of Management (IIM) Bangalore',
+    degree: 'Digital Business & Entrepreneurship (First Year Completed)',
+    duration: 'Certificate Programme',
+    gpa: 'Successfully completed the first year of the programme',
+    coursework: ['Digital Business', 'Entrepreneurship', 'Strategy', 'Business Analytics'],
+  },
+  {
+    institution: 'St. Mary’s Convent School',
+    degree: 'Higher Secondary (Class XII, CBSE)',
+    duration: 'Completed',
+    gpa: 'Class XII: 96.6%  •  Class X: 88.9%',
+    coursework: ['Mathematics', 'Economics', 'Business Studies', 'Accountancy', 'English'],
+  },
 ];
 
+/* ============================================================================
+ * EXPERIENCE
+ * ==========================================================================*/
 const EXPERIENCE = [
-  { org: 'Institute for Applied Economic Research', role: 'Research Intern', dates: 'May 2025 — Aug 2025', description: 'Assisted lead researchers on a labour market dynamics study; wrote data cleaning pipelines and drafted sections of the working paper.', skills: ['Stata', 'R', 'Panel Data', 'Academic Writing'], achievements: ['Co-authored a working paper submitted for review', 'Automated a monthly data pipeline saving ~10 hours / month'] },
-  { org: 'FinData Analytics', role: 'Data Analyst Intern', dates: 'Dec 2024 — Feb 2025', description: 'Built interactive Power BI dashboards for a portfolio analytics team and mentored two juniors on SQL best practices.', skills: ['SQL', 'Power BI', 'Python', 'ETL'], achievements: ['Shipped 4 production dashboards used by 40+ analysts', 'Reduced weekly reporting time by 60%'] },
-  { org: 'Open Source — AI for Research', role: 'Contributor', dates: '2024 — Present', description: 'Maintain open-source tools that use LLMs to accelerate systematic reviews and research writing.', skills: ['Python', 'LangChain', 'RAG', 'OSS'], achievements: ['200+ stars across repositories', 'Merged PRs from 6 external contributors'] },
+  {
+    org: 'Independent Research — Empirical Economics',
+    role: 'Independent Economics Researcher',
+    dates: '2025 — Present',
+    description:
+      'Conducting independent empirical research in labour economics and applied econometrics using large nationally representative microdata (PLFS 2019–20, PLFS 2023–24). Authored four research papers spanning OLS, Instrumental Variables and Heckman Sample Selection methodology. One paper is published on SSRN, one is under review at the Berkeley Undergraduate Economics Journal, and another was presented at an International Conference at Lady Shri Ram College, University of Delhi.',
+    skills: ['Python', 'R', 'PLFS Microdata', 'Applied Econometrics', 'Academic Writing'],
+    achievements: [
+      'Authored four working papers on returns to education and macroeconomic dynamics',
+      'Presented empirical research at an international conference at LSR, University of Delhi',
+      'Published a working paper on SSRN using Instrumental Variables on PLFS 2023–24',
+    ],
+  },
+  {
+    org: 'Independent Research Assistantship',
+    role: 'Research Assistant (Independent)',
+    dates: '2025 — Present',
+    description:
+      'Support empirical economics projects through end-to-end data pipelines — cleaning large PLFS unit-record data, constructing wage samples, running regression and econometric models, and drafting analytical write-ups for working papers.',
+    skills: ['Data Cleaning', 'Regression Analysis', 'Econometric Modelling', 'Academic Writing'],
+    achievements: [
+      'Built reproducible cleaning pipelines for PLFS 2019–20 and PLFS 2023–24 microdata',
+      'Implemented OLS, IV and Heckman selection models from raw survey data',
+      'Produced analysis-ready datasets that were reused across multiple papers',
+    ],
+  },
+  {
+    org: 'AI Workflows for Research',
+    role: 'AI Workflow Developer',
+    dates: '2024 — Present',
+    description:
+      'Design and build AI-powered research workflows: multi-agent systems that assist with literature review, retrieval-augmented question answering over academic papers, and prompt-engineered pipelines that automate repetitive research tasks while preserving reproducibility and citation traceability.',
+    skills: ['LLMs', 'Multi-Agent Systems', 'Prompt Engineering', 'RAG', 'Python'],
+    achievements: [
+      'Prototyped a multi-agent research assistant for empirical economics workflows',
+      'Built RAG pipelines that ground LLM responses in academic sources',
+      'Automated portions of the literature-review workflow used in own papers',
+    ],
+  },
 ];
 
+/* ============================================================================
+ * ACHIEVEMENTS & CERTIFICATIONS
+ * ==========================================================================*/
 const ACHIEVEMENTS = [
-  { icon: Trophy, title: 'Best Undergraduate Paper', detail: 'National Economics Conference 2024' },
-  { icon: Award, title: 'Dean’s List', detail: 'All semesters, 2023 — 2025' },
-  { icon: Star, title: 'Merit Scholarship', detail: 'Awarded top 1% incoming cohort' },
-  { icon: BookOpen, title: 'Certified Data Analyst', detail: 'Google • IBM Data Science' },
-  { icon: Sparkles, title: 'AI for Economics Fellow', detail: 'Selected cohort of 25 across India' },
-  { icon: Zap, title: 'Hackathon Winner', detail: '1st place — FinTech Hack 2024' },
+  { icon: Trophy, title: 'Paper Presentation — International Conference', detail: 'Lady Shri Ram College, University of Delhi' },
+  { icon: Award, title: 'International Commerce Olympiad — Gold Medal', detail: 'School Rank 1 • International Rank 457' },
+  { icon: Globe, title: 'Agile COIL — Hiroshima University', detail: 'Social entrepreneurship collaborative project' },
+  { icon: Star, title: 'GRE', detail: 'Score: 322' },
+  { icon: BookOpen, title: 'IELTS', detail: 'Overall Band: 7.5' },
+  { icon: FileText, title: 'SSRN Publication', detail: 'Working paper on returns to education (PLFS 2023–24)' },
+];
+
+const CERTIFICATIONS = [
+  { title: 'Agile COIL — Hiroshima University', detail: 'Collaborative Online International Learning' },
+  { title: 'Accenture — Data Analytics Simulation', detail: 'Applied data analytics job simulation' },
+  { title: 'IIM Bangalore — Digital Business & Entrepreneurship', detail: 'First-year certificate programme completed' },
 ];
 
 const COUNTERS = [
-  { label: 'Research Papers', value: 3, icon: FileText },
-  { label: 'GitHub Projects', value: 24, icon: Github },
-  { label: 'Certifications', value: 8, icon: Award },
-  { label: 'Publications', value: 2, icon: BookOpen },
+  { label: 'Research Papers', value: 4, icon: FileText },
+  { label: 'Conference Presentations', value: 1, icon: Trophy },
+  { label: 'Published on SSRN', value: 1, icon: BookOpen },
+  { label: 'Under Review', value: 2, icon: Sparkles },
+  { label: 'GitHub Projects', value: 6, icon: Github },
+  { label: 'Programming Languages', value: 6, icon: Code2 },
+  { label: 'Certifications', value: 3, icon: Award },
+  { label: 'Working Datasets', value: 3, icon: Database },
 ];
 
 /* ============ ANIMATION HELPERS ============ */
@@ -247,7 +474,7 @@ function Navbar({ active }) {
           </nav>
           <div className="hidden lg:block">
             <Button asChild size="sm" className="rounded-full bg-white text-black hover:bg-white/90">
-              <a href={PROFILE.resumeUrl} download><Download className="mr-1.5 h-3.5 w-3.5" /> Resume</a>
+              <a href={PROFILE.resumeUrl} download><Download className="mr-1.5 h-3.5 w-3.5" /> CV</a>
             </Button>
           </div>
           <button className="lg:hidden text-white" onClick={() => setOpen((v) => !v)} aria-label="Menu">{open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}</button>
@@ -267,7 +494,7 @@ function Navbar({ active }) {
 }
 
 function Hero() {
-  const roles = useMemo(() => ['Economics Researcher', 'Data Analyst', 'AI Workflow Developer'], []);
+  const roles = useMemo(() => ['Economics Researcher', 'Applied Econometrician', 'Data Analyst (R • Python)', 'AI Workflow Developer'], []);
   const [typed, setTyped] = useState('');
   const [roleIdx, setRoleIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
@@ -308,7 +535,7 @@ function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
           </span>
-          Available for research collaborations • {PROFILE.location}
+          Applying to Graduate Programmes • {PROFILE.location}
         </motion.div>
 
         <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.15 }} className="text-balance text-5xl font-bold leading-[1.02] tracking-tight md:text-7xl lg:text-8xl">
@@ -323,8 +550,8 @@ function Hero() {
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.9, delay: 0.9 }} className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-white/50 md:text-base">{PROFILE.short}</motion.p>
 
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.1 }} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Button onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} className="btn-ripple group rounded-full bg-white px-6 text-black hover:bg-white/90" size="lg">
-            View Projects<ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <Button onClick={() => document.getElementById('research')?.scrollIntoView({ behavior: 'smooth' })} className="btn-ripple group rounded-full bg-white px-6 text-black hover:bg-white/90" size="lg">
+            View Research<ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button variant="outline" size="lg" className="btn-ripple rounded-full border-white/20 bg-white/[0.03] text-white hover:bg-white/[0.08]" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>Get in touch</Button>
         </motion.div>
@@ -367,12 +594,14 @@ function About() {
   return (
     <section id="about" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="About Me" title="A researcher who codes, and a coder who researches." />
+        <SectionHeader eyebrow="About Me" title="An empirical researcher, and an aspiring economist." />
         <div className="grid items-center gap-14 lg:grid-cols-2">
           <Reveal variants={slideLeft} className="order-2 lg:order-1">
             <p className="text-lg font-semibold text-white/90">{PROFILE.name}</p>
             <p className="mt-1 text-sm uppercase tracking-[0.2em] text-blue-400/80">{PROFILE.headline}</p>
-            <p className="mt-6 leading-relaxed text-white/70">{PROFILE.bio}</p>
+            <div className="mt-6 space-y-4 leading-relaxed text-white/70">
+              {PROFILE.bio.map((para, i) => (<p key={i}>{para}</p>))}
+            </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <InfoCard icon={GraduationCap} title="Current Education" value={PROFILE.currentEducation} />
               <InfoCard icon={Sparkles} title="Career Objective" value={PROFILE.objective} />
@@ -417,35 +646,35 @@ function ResumeSection() {
   return (
     <section id="resume" className="relative py-28">
       <div className="mx-auto max-w-5xl px-6">
-        <SectionHeader eyebrow="Resume" title="A quick look at my CV." description="Download or preview my full CV — kept up to date with publications and projects." />
+        <SectionHeader eyebrow="Curriculum Vitæ" title="My full academic CV." description="A complete overview of my education, research output, technical training and academic activities." />
         <Reveal>
           <div className="glass-strong relative overflow-hidden rounded-3xl p-8 md:p-12">
             <div className="absolute inset-0 opacity-30 grid-bg" />
             <div className="relative flex flex-col items-center gap-8 md:flex-row md:items-stretch">
               <div className="flex aspect-[3/4] w-full max-w-[220px] flex-col items-center justify-center rounded-xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.02] p-4 text-center">
                 <FileText className="h-10 w-10 text-blue-300" />
-                <p className="mt-4 text-xs uppercase tracking-[0.2em] text-white/60">Resume</p>
-                <p className="mt-1 text-sm font-semibold text-white">{PROFILE.name}</p>
+                <p className="mt-4 text-xs uppercase tracking-[0.2em] text-white/60">CV</p>
+                <p className="mt-1 text-sm font-semibold text-white">Bhavya Mohan</p>
                 <p className="mt-1 text-[11px] text-white/50">PDF • Updated 2025</p>
                 <div className="mt-4 h-1 w-full rounded-full bg-white/10"><div className="h-full w-2/3 rounded-full bg-gradient-to-r from-blue-400 to-purple-500" /></div>
               </div>
               <div className="flex flex-1 flex-col justify-between gap-6">
                 <div>
-                  <h3 className="text-2xl font-semibold text-white">Curriculum Vitae</h3>
-                  <p className="mt-2 max-w-lg text-sm text-white/60">Comprehensive overview of my education, research output, technical skills and professional experience. Optimised for graduate school applications and technical recruiting.</p>
+                  <h3 className="text-2xl font-semibold text-white">Curriculum Vitæ</h3>
+                  <p className="mt-2 max-w-lg text-sm text-white/60">A comprehensive academic CV listing my education, research portfolio, working papers, technical skills, and awards. Prepared in an academic format suitable for graduate programme applications and research collaborations.</p>
                   <ul className="mt-4 grid gap-2 text-sm text-white/70 sm:grid-cols-2">
-                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Research publications & talks</li>
-                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Technical stack & tooling</li>
-                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Awards, scholarships & courses</li>
-                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Two-page academic format</li>
+                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Four research papers &amp; talks</li>
+                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Statistical &amp; econometric toolkit</li>
+                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Awards, olympiads &amp; certifications</li>
+                    <li className="flex items-center gap-2"><ChevronRight className="h-3 w-3 text-blue-400" /> Academic two-page format</li>
                   </ul>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild size="lg" className="btn-ripple rounded-full bg-white text-black hover:bg-white/90">
-                    <a href={PROFILE.resumeUrl} download><Download className="mr-2 h-4 w-4" /> Download Resume</a>
+                    <a href={PROFILE.resumeUrl} download><Download className="mr-2 h-4 w-4" /> Download CV</a>
                   </Button>
                   <Button asChild size="lg" variant="outline" className="btn-ripple rounded-full border-white/20 bg-white/[0.03] text-white hover:bg-white/[0.08]">
-                    <a href={PROFILE.resumeUrl} target="_blank" rel="noreferrer"><ExternalLink className="mr-2 h-4 w-4" /> View Resume</a>
+                    <a href={PROFILE.resumeUrl} target="_blank" rel="noreferrer"><ExternalLink className="mr-2 h-4 w-4" /> View CV</a>
                   </Button>
                 </div>
               </div>
@@ -457,30 +686,136 @@ function ResumeSection() {
   );
 }
 
+function ResearchJourney() {
+  return (
+    <Reveal className="mb-14">
+      <div className="glass-strong overflow-hidden rounded-2xl p-6 md:p-8">
+        <div className="mb-6 flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 ring-1 ring-white/10"><TrendingUp className="h-5 w-5 text-blue-300" /></div>
+          <div>
+            <p className="text-[11px] uppercase tracking-widest text-white/50">Research Journey</p>
+            <h3 className="text-lg font-semibold text-white">Progression of Methods &amp; Themes</h3>
+          </div>
+        </div>
+        <div className="grid gap-3 md:grid-cols-5">
+          {RESEARCH_JOURNEY.map((step, i) => (
+            <motion.div key={step.label} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }} className="relative rounded-xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-4">
+              <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-white/40">
+                <span className="grid h-5 w-5 place-items-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 text-[10px] font-bold text-black">{i + 1}</span>
+                Stage
+              </div>
+              <p className="mt-2 text-sm font-semibold text-white">{step.label}</p>
+              <p className="mt-1 text-[11px] leading-relaxed text-white/55">{step.detail}</p>
+              {i < RESEARCH_JOURNEY.length - 1 && (
+                <ChevronRight className="absolute -right-2 top-1/2 hidden h-4 w-4 -translate-y-1/2 text-blue-400/60 md:block" />
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
+const statusToneClass = {
+  emerald: 'bg-emerald-500/20 text-emerald-300',
+  amber: 'bg-amber-500/20 text-amber-300',
+  blue: 'bg-blue-500/20 text-blue-300',
+};
+
+function ResearchCard({ p, index }) {
+  const [expanded, setExpanded] = useState(false);
+  const citation = `Mohan, B. (${p.year}). ${p.title}. ${p.venue}.`;
+  const copyCitation = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(citation).then(
+        () => toast.success('Citation copied to clipboard'),
+        () => toast.error('Copy failed')
+      );
+    }
+  };
+  return (
+    <Card className="group glass-strong h-full rounded-2xl border-white/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.35)] md:p-8">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          <Badge className={`${statusToneClass[p.statusTone] || statusToneClass.blue} border-transparent`}>{p.status}</Badge>
+          <span className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[10px] uppercase tracking-widest text-white/60">{p.tag}</span>
+        </div>
+        <span className="text-[11px] uppercase tracking-widest text-white/40">Paper #{String(index + 1).padStart(2, '0')} • {p.year}</span>
+      </div>
+
+      <p className="text-[11px] uppercase tracking-[0.2em] text-blue-300/70">{p.area}</p>
+      <h3 className="mt-2 text-lg font-semibold leading-snug text-white transition-colors group-hover:text-blue-100 md:text-xl">{p.title}</h3>
+
+      <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-[15px]">
+        {expanded ? p.abstract : (p.abstract.length > 380 ? p.abstract.slice(0, 380) + '…' : p.abstract)}
+        {p.abstract.length > 380 && (
+          <button onClick={() => setExpanded((v) => !v)} className="ml-2 text-blue-300 hover:text-blue-200">
+            {expanded ? 'Show less' : 'Read more'}
+          </button>
+        )}
+      </p>
+
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <p className="text-[10px] uppercase tracking-widest text-white/50">Methods</p>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {p.methods.map((m) => (<span key={m} className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-white/75">{m}</span>))}
+          </div>
+        </div>
+        <div>
+          <p className="text-[10px] uppercase tracking-widest text-white/50">Dataset</p>
+          <p className="mt-2 text-sm text-white/80">{p.dataset}</p>
+        </div>
+      </div>
+
+      <div className="mt-5">
+        <p className="text-[10px] uppercase tracking-widest text-white/50">Keywords</p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {p.keywords.map((k) => (<span key={k} className="rounded-full bg-blue-500/10 px-2 py-0.5 text-[11px] text-blue-200/90">{k}</span>))}
+        </div>
+      </div>
+
+      <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.02] p-3 text-xs text-white/60">
+        <span className="text-white/80">Venue:</span> {p.venue}
+      </div>
+
+      <div className="mt-6 flex flex-wrap gap-2">
+        {p.links.paper ? (
+          <Button asChild size="sm" className="btn-ripple rounded-full bg-white text-black hover:bg-white/90">
+            <a href={p.links.paper} target="_blank" rel="noreferrer"><BookOpen className="mr-1.5 h-3.5 w-3.5" /> Read Paper</a>
+          </Button>
+        ) : (
+          <Button size="sm" disabled className="rounded-full bg-white/10 text-white/50"><BookOpen className="mr-1.5 h-3.5 w-3.5" /> Paper (available on request)</Button>
+        )}
+        {p.links.pdf && (
+          <Button asChild size="sm" variant="outline" className="btn-ripple rounded-full border-white/20 bg-transparent text-white hover:bg-white/[0.08]">
+            <a href={p.links.pdf} target="_blank" rel="noreferrer"><FileText className="mr-1.5 h-3.5 w-3.5" /> SSRN / PDF</a>
+          </Button>
+        )}
+        {p.links.code && (
+          <Button asChild size="sm" variant="outline" className="btn-ripple rounded-full border-white/20 bg-transparent text-white hover:bg-white/[0.08]">
+            <a href={p.links.code} target="_blank" rel="noreferrer"><Github className="mr-1.5 h-3.5 w-3.5" /> Code</a>
+          </Button>
+        )}
+        <Button onClick={copyCitation} size="sm" variant="outline" className="btn-ripple rounded-full border-white/20 bg-transparent text-white hover:bg-white/[0.08]">
+          <Quote className="mr-1.5 h-3.5 w-3.5" /> Cite
+        </Button>
+      </div>
+    </Card>
+  );
+}
+
 function ResearchSection() {
   return (
     <section id="research" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Research" title="Research Papers & Publications" description="Selected working papers and publications across labour, development, and AI-for-research." />
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }} variants={stagger} className="grid gap-6 md:grid-cols-2">
+        <SectionHeader eyebrow="Research" title="Research Papers &amp; Publications" description="A chronological account of my empirical work — tracing an evolution from time-series macroeconomics to causal inference and sample-selection econometrics in labour economics." />
+        <ResearchJourney />
+        <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.05 }} variants={stagger} className="grid gap-6 lg:grid-cols-2">
           {RESEARCH.map((p, i) => (
             <motion.div key={p.title} variants={fadeUp}>
-              <Card className="group glass-strong h-full rounded-2xl border-white/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.35)]">
-                <div className="mb-3 flex items-center justify-between">
-                  <Badge className={`${p.status === 'Published' ? 'bg-emerald-500/20 text-emerald-300' : p.status === 'Under Review' ? 'bg-amber-500/20 text-amber-300' : 'bg-blue-500/20 text-blue-300'} border-transparent`}>{p.status}</Badge>
-                  <span className="text-[11px] uppercase tracking-widest text-white/40">Paper #{String(i + 1).padStart(2, '0')}</span>
-                </div>
-                <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-blue-100">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/60">{p.abstract}</p>
-                <div className="mt-4 text-xs text-white/50"><span className="text-white/70">Venue:</span> {p.venue}</div>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {p.tech.map((t) => (<span key={t} className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] text-white/70">{t}</span>))}
-                </div>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  <Button asChild size="sm" className="btn-ripple rounded-full bg-white text-black hover:bg-white/90"><a href={p.link} target="_blank" rel="noreferrer"><BookOpen className="mr-1.5 h-3.5 w-3.5" /> Read Paper</a></Button>
-                  <Button asChild size="sm" variant="outline" className="btn-ripple rounded-full border-white/20 bg-transparent text-white hover:bg-white/[0.08]"><a href={p.pdf} target="_blank" rel="noreferrer"><FileText className="mr-1.5 h-3.5 w-3.5" /> SSRN / PDF</a></Button>
-                </div>
-              </Card>
+              <ResearchCard p={p} index={i} />
             </motion.div>
           ))}
         </motion.div>
@@ -493,7 +828,7 @@ function ProjectsSection() {
   return (
     <section id="projects" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Projects" title="Selected GitHub Repositories" description="Open-source tools, dashboards and experiments — mostly at the intersection of data, economics and AI." />
+        <SectionHeader eyebrow="Projects" title="Research &amp; Quantitative Projects" description="Selected empirical, quantitative-finance, and AI-for-research projects — written primarily in Python and R with reproducibility in mind." />
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }} variants={stagger} className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((p) => (
             <motion.div key={p.name} variants={fadeUp}>
@@ -509,7 +844,11 @@ function ProjectsSection() {
                       <h3 className="text-base font-semibold text-white">{p.name}</h3>
                     </div>
                   </div>
-                  <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white/50">Public</span>
+                  {p.comingSoon ? (
+                    <span className="rounded-full border border-amber-400/30 bg-amber-500/10 px-2 py-0.5 text-[10px] text-amber-200">Coming Soon</span>
+                  ) : (
+                    <span className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] text-white/50">Public</span>
+                  )}
                 </div>
                 <p className="relative mt-4 text-sm leading-relaxed text-white/60">{p.description}</p>
                 <div className="relative mt-4 flex flex-wrap gap-1.5">
@@ -545,7 +884,7 @@ function SkillsSection() {
   return (
     <section id="skills" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Skills" title="Toolkit & Techniques" description="A snapshot of the technical and analytical toolkit I use for research and applied projects." />
+        <SectionHeader eyebrow="Skills" title="Toolkit &amp; Techniques" description="An overview of the econometric, statistical, computational and research skills I use in my empirical work." />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {SKILLS.map((g, i) => (
             <Reveal key={g.group} variants={i % 2 === 0 ? slideLeft : slideRight}>
@@ -568,7 +907,7 @@ function ExperienceSection() {
   return (
     <section id="experience" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Experience" title="Internships & Research Work" description="Hands-on experience across research institutes, analytics teams and open-source communities." />
+        <SectionHeader eyebrow="Experience" title="Research &amp; Professional Work" description="Independent empirical research, research assistantship, and AI-workflow development for academic use." />
         <div className="space-y-6">
           {EXPERIENCE.map((e, i) => (
             <Reveal key={e.org} variants={i % 2 === 0 ? slideLeft : slideRight}>
@@ -602,7 +941,7 @@ function EducationSection() {
   return (
     <section id="education" className="relative py-28">
       <div className="mx-auto max-w-4xl px-6">
-        <SectionHeader eyebrow="Education" title="Academic Journey" description="Where the foundations were laid." />
+        <SectionHeader eyebrow="Education" title="Academic Journey" description="University of Delhi • IIM Bangalore • St. Mary’s Convent School." />
         <div className="relative">
           <div className="absolute left-4 top-2 h-full w-px bg-gradient-to-b from-blue-500/50 via-white/10 to-transparent md:left-1/2" />
           <div className="space-y-10">
@@ -657,20 +996,22 @@ function AchievementsSection() {
   return (
     <section id="achievements" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Achievements" title="Recognition & Milestones" description="A summary of research talks, publications, awards and certifications." />
+        <SectionHeader eyebrow="Achievements" title="Recognition, Milestones &amp; Certifications" description="Selected honours, examinations, and certifications from my academic and research journey so far." />
+
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="mb-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {COUNTERS.map((c) => (
             <motion.div key={c.label} variants={fadeUp}>
               <div className="glass-strong flex items-center gap-4 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:border-white/25">
                 <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 ring-1 ring-white/10"><c.icon className="h-5 w-5 text-blue-300" /></div>
                 <div>
-                  <p className="text-3xl font-bold text-white"><CountUp to={c.value} />+</p>
+                  <p className="text-3xl font-bold text-white"><CountUp to={c.value} /></p>
                   <p className="text-xs uppercase tracking-widest text-white/50">{c.label}</p>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
+
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={stagger} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ACHIEVEMENTS.map((a) => (
             <motion.div key={a.title} variants={fadeUp}>
@@ -686,6 +1027,26 @@ function AchievementsSection() {
             </motion.div>
           ))}
         </motion.div>
+
+        <Reveal className="mt-10">
+          <div className="glass-strong rounded-2xl p-6 md:p-8">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-emerald-400/20 to-blue-500/10 ring-1 ring-white/10"><Award className="h-5 w-5 text-emerald-300" /></div>
+              <div>
+                <p className="text-[11px] uppercase tracking-widest text-white/50">Certifications</p>
+                <h3 className="text-lg font-semibold text-white">Selected Programmes &amp; Trainings</h3>
+              </div>
+            </div>
+            <div className="grid gap-3 md:grid-cols-3">
+              {CERTIFICATIONS.map((c) => (
+                <div key={c.title} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-sm font-semibold text-white">{c.title}</p>
+                  <p className="mt-1 text-xs text-white/55">{c.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -708,36 +1069,36 @@ function ContactSection() {
   };
   const contactLinks = [
     { icon: Mail, label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
-    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/yourhandle', href: PROFILE.socials.linkedin },
-    { icon: Github, label: 'GitHub', value: 'github.com/yourhandle', href: PROFILE.socials.github },
-    { icon: Globe, label: 'Website', value: PROFILE.socials.website?.replace(/^https?:\/\//, ''), href: PROFILE.socials.website },
-    { icon: GraduationCap, label: 'Google Scholar', value: 'scholar.google.com', href: PROFILE.socials.scholar },
-    { icon: FileText, label: 'SSRN', value: 'papers.ssrn.com', href: PROFILE.socials.ssrn },
+    { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/bhavya-mohan', href: PROFILE.socials.linkedin },
+    { icon: Github, label: 'GitHub', value: 'github.com/mohanbhavya98', href: PROFILE.socials.github },
+    { icon: FileText, label: 'SSRN', value: 'SSRN Author Page', href: PROFILE.socials.ssrn },
+    { icon: MapPin, label: 'Location', value: PROFILE.location, href: '#' },
+    { icon: GraduationCap, label: 'Affiliation', value: 'SGTB Khalsa College, University of Delhi', href: '#' },
   ];
   return (
     <section id="contact" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Contact" title="Let’s work together." description="Have a research idea, collaboration or role in mind? Send me a note — I read every message." />
+        <SectionHeader eyebrow="Contact" title="Let’s work together." description="For research collaborations, graduate-admissions correspondence, or any academic enquiry — please write to me. I read every message." />
         <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
           <Reveal variants={slideLeft}>
             <form onSubmit={submit} className="glass-strong space-y-4 rounded-2xl p-6 md:p-8">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="text-[11px] uppercase tracking-widest text-white/50">Name</label>
-                  <Input className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Ada Lovelace" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+                  <Input className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Your full name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
                 </div>
                 <div>
                   <label className="text-[11px] uppercase tracking-widest text-white/50">Email</label>
-                  <Input type="email" className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="ada@analytical.engine" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+                  <Input type="email" className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="you@institution.edu" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
                 </div>
               </div>
               <div>
                 <label className="text-[11px] uppercase tracking-widest text-white/50">Subject</label>
-                <Input className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Research collaboration" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} />
+                <Input className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Research collaboration, RA position, admissions query…" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} />
               </div>
               <div>
                 <label className="text-[11px] uppercase tracking-widest text-white/50">Message</label>
-                <Textarea rows={6} className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Tell me about your project..." value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
+                <Textarea rows={6} className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Tell me about your project or enquiry…" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
               </div>
               <div className="flex items-center justify-between">
                 <p className="text-[11px] text-white/40">Typically replies within 48 hours.</p>
@@ -762,8 +1123,8 @@ function ContactSection() {
               <a href={PROFILE.resumeUrl} download className="glass group col-span-1 flex items-center gap-3 rounded-2xl p-4 transition-all hover:-translate-y-0.5 hover:border-white/25 sm:col-span-2">
                 <div className="grid h-10 w-10 flex-none place-items-center rounded-lg bg-gradient-to-br from-emerald-400/20 to-blue-500/20 ring-1 ring-white/10"><Download className="h-4 w-4 text-emerald-300" /></div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-widest text-white/50">CV Download</p>
-                  <p className="text-sm text-white/85">Grab the latest PDF of my CV</p>
+                  <p className="text-[11px] uppercase tracking-widest text-white/50">Download CV</p>
+                  <p className="text-sm text-white/85">Grab the latest PDF of my academic CV</p>
                 </div>
                 <ExternalLink className="ml-auto h-3.5 w-3.5 text-white/30 transition-colors group-hover:text-white/80" />
               </a>
@@ -793,7 +1154,7 @@ function Footer() {
               <div className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 text-xs font-bold">{PROFILE.name.split(' ').map(s => s[0]).join('').slice(0, 2).toUpperCase()}</div>
               <span className="text-sm font-semibold text-white/90">{PROFILE.name}</span>
             </div>
-            <p className="mt-4 max-w-xs text-sm text-white/50">Turning economic questions into reproducible data-driven answers.</p>
+            <p className="mt-4 max-w-xs text-sm text-white/50">Empirical economics research — reproducible, transparent, and evidence-based.</p>
           </div>
           <div>
             <p className="text-[11px] uppercase tracking-widest text-white/50">Quick Links</p>
@@ -805,9 +1166,7 @@ function Footer() {
               <SocialIcon href={PROFILE.socials.github} icon={Github} label="GitHub" />
               <SocialIcon href={PROFILE.socials.linkedin} icon={Linkedin} label="LinkedIn" />
               <SocialIcon href={`mailto:${PROFILE.email}`} icon={Mail} label="Email" />
-              <SocialIcon href={PROFILE.socials.scholar} icon={GraduationCap} label="Scholar" />
               <SocialIcon href={PROFILE.socials.ssrn} icon={FileText} label="SSRN" />
-              <SocialIcon href={PROFILE.socials.website} icon={Globe} label="Website" />
             </div>
           </div>
         </div>

@@ -2,13 +2,13 @@ import './globals.css';
 import { Toaster } from '@/components/ui/sonner';
 
 export const metadata = {
-  title: 'Portfolio — Economics Researcher • Data Analyst • AI Workflow Developer',
-  description: 'Personal portfolio of an economics researcher, data analyst, and AI workflow developer. Research papers, projects, publications, and technical experience.',
-  keywords: ['portfolio', 'economics', 'researcher', 'data analyst', 'AI', 'workflow', 'developer', 'research', 'publications'],
-  authors: [{ name: 'Your Name' }],
+  title: 'Bhavya Mohan — Economics Researcher • Applied Econometrics • Causal Inference',
+  description: 'Personal research portfolio of Bhavya Mohan — undergraduate researcher in labour economics, applied econometrics, causal inference and quantitative finance at the University of Delhi.',
+  keywords: ['Bhavya Mohan', 'economics', 'researcher', 'labour economics', 'applied econometrics', 'causal inference', 'PLFS', 'Heckman', 'Instrumental Variables', 'University of Delhi'],
+  authors: [{ name: 'Bhavya Mohan' }],
   openGraph: {
-    title: 'Portfolio — Economics Researcher & Data Analyst',
-    description: 'Research, data analysis, and AI workflow projects.',
+    title: 'Bhavya Mohan — Economics Researcher',
+    description: 'Undergraduate research portfolio in labour economics and applied econometrics.',
     type: 'website',
   },
 };
