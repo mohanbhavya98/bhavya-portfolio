@@ -40,12 +40,17 @@ import {
   Cpu,
   TrendingUp,
   Quote,
+  BadgeCheck,
+  Copy,
+  Check,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { toast } from 'sonner';
 
 /* ============================================================================
@@ -116,17 +121,17 @@ const RESEARCH = [
     year: '2024',
     title:
       'The Resurrection of the Trade-Off: An Empirical Re-examination of the Expectations-Augmented Phillips Curve in the Post-Pandemic Era',
-    status: 'Completed',
-    statusTone: 'blue',
+    status: 'Available on SSRN',
+    statusTone: 'emerald',
     tag: 'Early Research Project',
-    venue: 'Independent Working Paper',
+    venue: 'SSRN Working Paper Series',
     area: 'Macroeconomics • Monetary Economics • Time-Series Econometrics',
     abstract:
       'This paper — my first independent empirical study — revisits the Expectations-Augmented Phillips Curve using post-pandemic macroeconomic data to investigate whether the classical inflation–unemployment trade-off has re-emerged after the COVID-19 shock. Estimating the Phillips relation across two distinct macroeconomic regimes (post-2008 and post-pandemic) using U.S. monthly data from the Federal Reserve Economic Database (FRED), the study documents a substantial structural break: the slope of the Phillips Curve has steepened noticeably in the recent recovery, implying that inflationary pressures now respond more strongly to labour-market slack than they did during the low-inflation decade preceding the pandemic. While written largely as a learning exercise during the early phase of my research training, this paper laid the methodological foundation for the empirical work that followed — particularly the use of structural break tests, expectations dynamics, and reproducible time-series pipelines.',
     methods: ['Time-Series Regression', 'Expectations-Augmented Phillips Curve', 'Structural Break Analysis'],
     dataset: 'Federal Reserve Economic Data (FRED)',
     keywords: ['Macroeconomics', 'Phillips Curve', 'Inflation', 'Unemployment', 'Federal Reserve', 'Monetary Policy', 'Time Series'],
-    links: { paper: null, pdf: null, code: null },
+    links: { paper: PROFILE.socials.ssrn, pdf: PROFILE.socials.ssrn, code: null },
   },
   {
     year: '2025',
@@ -143,6 +148,7 @@ const RESEARCH = [
     dataset: 'PLFS 2019–20',
     keywords: ['Labour Economics', 'Returns to Education', 'Human Capital', 'PLFS', 'Formal Sector', 'Informal Sector', 'Applied Econometrics'],
     links: { paper: null, pdf: null, code: null },
+    presentationCert: '/certificates/paper-presentation-lsr.pdf',
   },
   {
     year: '2025',
@@ -341,7 +347,7 @@ const EXPERIENCE = [
  * ==========================================================================*/
 const ACHIEVEMENTS = [
   { icon: Trophy, title: 'Paper Presentation — International Conference', detail: 'Lady Shri Ram College, University of Delhi' },
-  { icon: Award, title: 'International Commerce Olympiad — Gold Medal', detail: 'School Rank 1 • International Rank 457' },
+  { icon: Award, title: 'International Commerce Olympiad — Gold Medal', detail: 'School Rank 1 • International Rank 457', cert: '/certificates/international-commerce-olympiad.pdf' },
   { icon: Globe, title: 'Agile COIL — Hiroshima University', detail: 'Social entrepreneurship collaborative project' },
   { icon: Star, title: 'GRE', detail: 'Score: 322' },
   { icon: BookOpen, title: 'IELTS', detail: 'Overall Band: 7.5' },
@@ -349,9 +355,9 @@ const ACHIEVEMENTS = [
 ];
 
 const CERTIFICATIONS = [
-  { title: 'Learning Pod Leader — IIM Bangalore (BBA DBE)', detail: 'Certificate of service for peer mentoring, AY 2025–26' },
-  { title: 'Agile COIL — Hiroshima University', detail: 'Collaborative Online International Learning' },
-  { title: 'Accenture — Data Analytics Simulation', detail: 'Applied data analytics job simulation' },
+  { title: 'Learning Pod Leader — IIM Bangalore (BBA DBE)', detail: 'Certificate of service for peer mentoring, AY 2025–26', cert: '/certificates/learning-pod-leader.pdf' },
+  { title: 'Agile COIL — Hiroshima University', detail: 'Collaborative Online International Learning', cert: '/certificates/agile-coil.pdf' },
+  { title: 'Accenture — Data Analytics & Visualization Job Simulation', detail: 'Applied data analytics & visualization job simulation', cert: '/certificates/accenture-data-analytics.pdf' },
   { title: 'IIM Bangalore — Digital Business & Entrepreneurship', detail: 'First-year certificate programme completed' },
 ];
 
@@ -695,17 +701,128 @@ const statusToneClass = {
   blue: 'bg-blue-500/20 text-blue-300',
 };
 
+/* --------------------------------------------------------------------------
+ * Citation helpers
+ * ------------------------------------------------------------------------*/
+function buildCitations(p) {
+  const author = 'Mohan, B.';
+  const year = p.year;
+  const title = p.title;
+  const venue = p.venue || 'Working Paper';
+  const url = p.links?.paper || p.links?.pdf || '';
+  const urlSuffix = url ? ` Retrieved from ${url}` : '';
+  const bibKey = `mohan${year}${(title.split(/\s+/)[0] || 'paper').replace(/[^A-Za-z0-9]/g, '').toLowerCase()}`;
+
+  return {
+    APA: `${author} (${year}). ${title}. ${venue}.${urlSuffix}`,
+    MLA: `${author.replace(',', ',')} "${title}." ${venue}, ${year}.${url ? ` Web. <${url}>.` : ''}`,
+    Chicago: `${author} "${title}." ${venue} (${year}).${url ? ` ${url}.` : ''}`,
+    BibTeX: `@techreport{${bibKey},\n  author = {Bhavya Mohan},\n  title  = {${title}},\n  year   = {${year}},\n  institution = {${venue}}${url ? `,\n  url    = {${url}}` : ''}\n}`,
+  };
+}
+
+/* --------------------------------------------------------------------------
+ * Certificate Viewer Dialog
+ * ------------------------------------------------------------------------*/
+function CertificateDialog({ url, title, trigger }) {
+  const [open, setOpen] = useState(false);
+  if (!url) return null;
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
+      <DialogContent className="glass-strong max-w-4xl border-white/10 bg-black/90 p-0 text-white sm:rounded-2xl">
+        <DialogHeader className="flex-row items-center justify-between space-y-0 border-b border-white/10 p-4">
+          <div className="flex items-center gap-2">
+            <BadgeCheck className="h-4 w-4 text-blue-300" />
+            <DialogTitle className="text-sm font-semibold text-white">{title}</DialogTitle>
+          </div>
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            className="mr-6 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.05] px-3 py-1 text-[11px] text-white/80 hover:bg-white/10"
+          >
+            <ExternalLink className="h-3 w-3" /> Open in new tab
+          </a>
+        </DialogHeader>
+        <div className="h-[70vh] w-full overflow-hidden rounded-b-2xl bg-black">
+          <iframe src={url} title={title} className="h-full w-full border-0" />
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+/* --------------------------------------------------------------------------
+ * Citation Dialog (APA / MLA / Chicago / BibTeX)
+ * ------------------------------------------------------------------------*/
+function CiteDialog({ paper }) {
+  const citations = useMemo(() => buildCitations(paper), [paper]);
+  const [copied, setCopied] = useState(null);
+  const copy = (format) => {
+    if (typeof navigator === 'undefined' || !navigator.clipboard) return;
+    navigator.clipboard.writeText(citations[format]).then(
+      () => {
+        setCopied(format);
+        toast.success(`${format} citation copied`);
+        setTimeout(() => setCopied(null), 1500);
+      },
+      () => toast.error('Copy failed')
+    );
+  };
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button size="sm" variant="outline" className="btn-ripple rounded-full border-white/20 bg-transparent text-white hover:bg-white/[0.08]">
+          <Quote className="mr-1.5 h-3.5 w-3.5" /> Cite
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="glass-strong max-w-2xl border-white/10 bg-black/95 text-white sm:rounded-2xl">
+        <DialogHeader>
+          <DialogTitle className="text-base font-semibold text-white">Cite this paper</DialogTitle>
+          <DialogDescription className="text-xs text-white/50">
+            Choose a citation style. Each format has its own copy button.
+          </DialogDescription>
+        </DialogHeader>
+        <p className="rounded-lg border border-white/10 bg-white/[0.03] p-3 text-[11px] leading-relaxed text-white/60">
+          {paper.title}
+        </p>
+        <Tabs defaultValue="APA" className="mt-2">
+          <TabsList className="grid grid-cols-4 gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1">
+            {['APA', 'MLA', 'Chicago', 'BibTeX'].map((f) => (
+              <TabsTrigger
+                key={f}
+                value={f}
+                className="rounded-full text-[11px] font-medium text-white/60 data-[state=active]:bg-white data-[state=active]:text-black"
+              >
+                {f}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {['APA', 'MLA', 'Chicago', 'BibTeX'].map((f) => (
+            <TabsContent key={f} value={f} className="mt-4">
+              <div className="relative">
+                <pre className="max-h-64 overflow-auto whitespace-pre-wrap rounded-xl border border-white/10 bg-white/[0.03] p-4 text-[12px] leading-relaxed text-white/85">
+                  {citations[f]}
+                </pre>
+                <Button
+                  onClick={() => copy(f)}
+                  size="sm"
+                  className="btn-ripple mt-3 rounded-full bg-white text-black hover:bg-white/90"
+                >
+                  {copied === f ? (<><Check className="mr-1.5 h-3.5 w-3.5" /> Copied</>) : (<><Copy className="mr-1.5 h-3.5 w-3.5" /> Copy {f}</>)}
+                </Button>
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function ResearchCard({ p, index }) {
   const [expanded, setExpanded] = useState(false);
-  const citation = `Mohan, B. (${p.year}). ${p.title}. ${p.venue}.`;
-  const copyCitation = () => {
-    if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText(citation).then(
-        () => toast.success('Citation copied to clipboard'),
-        () => toast.error('Copy failed')
-      );
-    }
-  };
   return (
     <Card className="group glass-strong h-full rounded-2xl border-white/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_20px_50px_-15px_rgba(59,130,246,0.35)] md:p-8">
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
@@ -757,6 +874,16 @@ function ResearchCard({ p, index }) {
           <Button asChild size="sm" className="btn-ripple rounded-full bg-white text-black hover:bg-white/90">
             <a href={p.links.paper} target="_blank" rel="noreferrer"><BookOpen className="mr-1.5 h-3.5 w-3.5" /> Read Paper</a>
           </Button>
+        ) : p.presentationCert ? (
+          <CertificateDialog
+            url={p.presentationCert}
+            title={`Paper Presentation Certificate — ${p.title}`}
+            trigger={
+              <Button size="sm" className="btn-ripple rounded-full bg-white/10 text-white/70 hover:bg-white/15">
+                <BookOpen className="mr-1.5 h-3.5 w-3.5" /> Paper (available on request)
+              </Button>
+            }
+          />
         ) : (
           <Button size="sm" disabled className="rounded-full bg-white/10 text-white/50"><BookOpen className="mr-1.5 h-3.5 w-3.5" /> Paper (available on request)</Button>
         )}
@@ -770,9 +897,7 @@ function ResearchCard({ p, index }) {
             <a href={p.links.code} target="_blank" rel="noreferrer"><Github className="mr-1.5 h-3.5 w-3.5" /> Code</a>
           </Button>
         )}
-        <Button onClick={copyCitation} size="sm" variant="outline" className="btn-ripple rounded-full border-white/20 bg-transparent text-white hover:bg-white/[0.08]">
-          <Quote className="mr-1.5 h-3.5 w-3.5" /> Cite
-        </Button>
+        <CiteDialog paper={p} />
       </div>
     </Card>
   );
@@ -989,12 +1114,25 @@ function AchievementsSection() {
             <motion.div key={a.title} variants={fadeUp}>
               <div className="glass group rounded-2xl p-5 transition-all hover:-translate-y-1 hover:border-white/25">
                 <div className="flex items-center gap-3">
-                  <div className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-amber-400/20 to-pink-500/10 ring-1 ring-white/10"><a.icon className="h-5 w-5 text-amber-300" /></div>
-                  <div>
+                  <div className="grid h-10 w-10 flex-none place-items-center rounded-lg bg-gradient-to-br from-amber-400/20 to-pink-500/10 ring-1 ring-white/10"><a.icon className="h-5 w-5 text-amber-300" /></div>
+                  <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-white">{a.title}</p>
                     <p className="text-xs text-white/50">{a.detail}</p>
                   </div>
                 </div>
+                {a.cert && (
+                  <div className="mt-3">
+                    <CertificateDialog
+                      url={a.cert}
+                      title={a.title}
+                      trigger={
+                        <Button size="sm" variant="outline" className="btn-ripple rounded-full border-white/15 bg-white/[0.04] text-[11px] text-white/85 hover:bg-white/[0.1]">
+                          <BadgeCheck className="mr-1.5 h-3.5 w-3.5 text-blue-300" /> View Certificate
+                        </Button>
+                      }
+                    />
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
@@ -1011,9 +1149,22 @@ function AchievementsSection() {
             </div>
             <div className="grid gap-3 md:grid-cols-3">
               {CERTIFICATIONS.map((c) => (
-                <div key={c.title} className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+                <div key={c.title} className="flex h-full flex-col rounded-xl border border-white/10 bg-white/[0.03] p-4">
                   <p className="text-sm font-semibold text-white">{c.title}</p>
                   <p className="mt-1 text-xs text-white/55">{c.detail}</p>
+                  {c.cert && (
+                    <div className="mt-3">
+                      <CertificateDialog
+                        url={c.cert}
+                        title={c.title}
+                        trigger={
+                          <Button size="sm" variant="outline" className="btn-ripple rounded-full border-white/15 bg-white/[0.04] text-[11px] text-white/85 hover:bg-white/[0.1]">
+                            <BadgeCheck className="mr-1.5 h-3.5 w-3.5 text-blue-300" /> View Certificate
+                          </Button>
+                        }
+                      />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
