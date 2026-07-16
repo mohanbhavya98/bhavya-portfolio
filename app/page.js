@@ -55,14 +55,14 @@ const PROFILE = {
   name: 'Bhavya Mohan',
   headline: 'Economics Undergraduate • Empirical Research (R, Python) • Labour Economics • Applied Econometrics • Causal Inference',
   short:
-    'Economics researcher building reproducible empirical research and AI-powered research workflows using econometrics, statistical programming and machine learning.',
+    'Economics researcher building reproducible empirical research using applied econometrics, statistical programming, quantitative analysis and machine learning to study labour markets and public policy.',
   location: 'Delhi, India',
   email: 'mohanbhavya98@gmail.com',
   bio: [
-    `I am an undergraduate student of Economics (Honours) at Sri Guru Tegh Bahadur Khalsa College, University of Delhi, with a deep interest in empirical labour economics, applied econometrics and causal inference. My research primarily uses large nationally representative datasets — particularly the Periodic Labour Force Survey (PLFS) — to study human capital, returns to education, and the structure of India’s labour market.`,
-    `My current research portfolio examines the returns to education in India across successive rounds of the PLFS using progressively more sophisticated econometric methods — Ordinary Least Squares, Instrumental Variables, and the Heckman Two-Step Sample Selection Model. Alongside labour economics, I have also worked on macroeconomic questions using time-series data from the Federal Reserve Economic Database (FRED), including an empirical re-examination of the Expectations-Augmented Phillips Curve in the post-pandemic era.`,
-    `Beyond traditional empirical work, I build AI-powered research workflows and quantitative finance projects: multi-agent research assistants, retrieval-augmented systems for literature reviews, Hidden Markov Model based macro regime detection, and derivative pricing pipelines. I write reproducible research in Python and R, and I strongly believe in open science, evidence-based policymaking, and making empirical findings transparent and replicable.`,
-    `I am preparing for graduate study in Economics with the goal of contributing rigorous, policy-relevant scholarship at the intersection of labour economics, computational economics, and applied econometrics.`,
+    `I am an undergraduate student of Economics (Honours) at Sri Guru Tegh Bahadur Khalsa College, University of Delhi, with a deep interest in empirical labour economics, applied econometrics, human capital and causal inference. My research primarily uses large nationally representative datasets — particularly the Periodic Labour Force Survey (PLFS) — to study human capital accumulation, returns to education, wage determination and the structure of India’s labour market.`,
+    `My research programme has developed progressively over the last two years. It began with an independent time-series study of the Expectations-Augmented Phillips Curve in the post-pandemic era using data from the Federal Reserve Economic Database (FRED), and has since matured into a series of empirical labour economics papers that estimate the returns to education across successive rounds of the PLFS using increasingly sophisticated econometric methods — Ordinary Least Squares, Instrumental Variables (two-stage least squares), and the Heckman Two-Step Sample Selection Model.`,
+    `I conduct all of my empirical work in R and Python, with an emphasis on writing reproducible research code: clean data pipelines, versioned analysis scripts, and clearly documented results. I care deeply about open science, transparent empirical research, and evidence-based policymaking, and I try to make my analyses replicable at every step — from raw microdata to published estimates. Alongside labour economics, I am also actively studying quantitative finance and financial econometrics.`,
+    `I am preparing for graduate study in Economics, with research interests spanning Labour Economics, Applied Econometrics, Human Capital, Causal Inference and Quantitative Finance. My longer-term goal is to contribute rigorous, policy-relevant empirical scholarship at the intersection of labour markets, human capital and applied econometric methodology.`,
   ],
   objective:
     'Pursue graduate research in Economics with interests in Labour Economics, Applied Econometrics, Causal Inference, Computational Economics and Quantitative Finance.',
@@ -70,14 +70,13 @@ const PROFILE = {
   interests: [
     'Labour Economics',
     'Applied Econometrics',
+    'Human Capital',
     'Causal Inference',
     'Macroeconomics',
     'Development Economics',
     'Machine Learning',
-    'AI for Research',
     'Quantitative Finance',
     'Financial Econometrics',
-    'Research Automation',
   ],
   expertise: [
     'Empirical Research',
@@ -216,17 +215,9 @@ const PROJECTS = [
     demo: null,
   },
   {
-    name: 'AI Research Assistant (Multi-Agent Workflow)',
-    description:
-      'A multi-agent system that assists with academic research: literature retrieval, structured note extraction, RAG-based question answering over papers, and draft-writing prompts — all with an emphasis on reproducibility and citation traceability.',
-    tech: ['Python', 'OpenAI', 'RAG', 'Multi-Agent Systems', 'Prompt Engineering'],
-    github: 'https://github.com/mohanbhavya98',
-    demo: null,
-  },
-  {
     name: 'Research Portfolio Website',
     description:
-      'This website. A modern, animated research portfolio built to showcase publications, working papers, and quantitative projects — designed for graduate-school applications and academic outreach.',
+      'Designed and developed a fully responsive academic portfolio using Next.js, React, Tailwind CSS and Framer Motion to showcase research publications, quantitative projects, academic achievements and professional experience. The website integrates smooth animations, interactive timelines and modern UI principles while serving as a long-term research portfolio.',
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
     github: 'https://github.com/mohanbhavya98',
     demo: null,
@@ -284,13 +275,6 @@ const SKILLS = [
     { name: 'Quarto', level: 82 },
     { name: 'Policy Analysis', level: 80 },
   ]},
-  { group: 'AI & Automation', icon: Cpu, items: [
-    { name: 'OpenAI APIs', level: 84 },
-    { name: 'Prompt Engineering', level: 88 },
-    { name: 'AI Agents', level: 82 },
-    { name: 'Retrieval-Augmented Generation (RAG)', level: 80 },
-    { name: 'Research Automation', level: 84 },
-  ]},
 ];
 
 /* ============================================================================
@@ -338,29 +322,16 @@ const EXPERIENCE = [
     ],
   },
   {
-    org: 'Independent Research Assistantship',
-    role: 'Research Assistant (Independent)',
-    dates: '2025 — Present',
+    org: 'Indian Institute of Management (IIM) Bangalore — BBA in Digital Business & Entrepreneurship (BBA DBE)',
+    role: 'Learning Pod Leader',
+    dates: 'Academic Year 2025–26',
     description:
-      'Support empirical economics projects through end-to-end data pipelines — cleaning large PLFS unit-record data, constructing wage samples, running regression and econometric models, and drafting analytical write-ups for working papers.',
-    skills: ['Data Cleaning', 'Regression Analysis', 'Econometric Modelling', 'Academic Writing'],
+      'Selected as one of approximately 60–70 Learning Pod Leaders from a cohort of more than 1,000 students after achieving strong academic performance in the Term 1 Statistics course of the BBA(DBE) programme. In this role, I supported fellow students by conducting online doubt-solving sessions, mentoring peers in quantitative subjects, facilitating collaborative learning, and organising revision sessions before examinations — contributing to improving academic engagement within the BBA(DBE) community. I completed the first year of the BBA(DBE) programme before withdrawing. A Learning Pod Leader certificate has been issued confirming my service during Academic Year 2025–26.',
+    skills: ['Statistics', 'Peer Mentoring', 'Quantitative Tutoring', 'Academic Facilitation', 'Communication'],
     achievements: [
-      'Built reproducible cleaning pipelines for PLFS 2019–20 and PLFS 2023–24 microdata',
-      'Implemented OLS, IV and Heckman selection models from raw survey data',
-      'Produced analysis-ready datasets that were reused across multiple papers',
-    ],
-  },
-  {
-    org: 'AI Workflows for Research',
-    role: 'AI Workflow Developer',
-    dates: '2024 — Present',
-    description:
-      'Design and build AI-powered research workflows: multi-agent systems that assist with literature review, retrieval-augmented question answering over academic papers, and prompt-engineered pipelines that automate repetitive research tasks while preserving reproducibility and citation traceability.',
-    skills: ['LLMs', 'Multi-Agent Systems', 'Prompt Engineering', 'RAG', 'Python'],
-    achievements: [
-      'Prototyped a multi-agent research assistant for empirical economics workflows',
-      'Built RAG pipelines that ground LLM responses in academic sources',
-      'Automated portions of the literature-review workflow used in own papers',
+      'Selected among ~60–70 Learning Pod Leaders from a cohort of 1,000+ students',
+      'Conducted online doubt-solving and revision sessions for quantitative coursework',
+      'Awarded an official Learning Pod Leader certificate for AY 2025–26',
     ],
   },
 ];
@@ -378,6 +349,7 @@ const ACHIEVEMENTS = [
 ];
 
 const CERTIFICATIONS = [
+  { title: 'Learning Pod Leader — IIM Bangalore (BBA DBE)', detail: 'Certificate of service for peer mentoring, AY 2025–26' },
   { title: 'Agile COIL — Hiroshima University', detail: 'Collaborative Online International Learning' },
   { title: 'Accenture — Data Analytics Simulation', detail: 'Applied data analytics job simulation' },
   { title: 'IIM Bangalore — Digital Business & Entrepreneurship', detail: 'First-year certificate programme completed' },
@@ -388,7 +360,7 @@ const COUNTERS = [
   { label: 'Conference Presentations', value: 1, icon: Trophy },
   { label: 'Published on SSRN', value: 1, icon: BookOpen },
   { label: 'Under Review', value: 2, icon: Sparkles },
-  { label: 'GitHub Projects', value: 6, icon: Github },
+  { label: 'GitHub Projects', value: 5, icon: Github },
   { label: 'Programming Languages', value: 6, icon: Code2 },
   { label: 'Certifications', value: 3, icon: Award },
   { label: 'Working Datasets', value: 3, icon: Database },
@@ -494,7 +466,7 @@ function Navbar({ active }) {
 }
 
 function Hero() {
-  const roles = useMemo(() => ['Economics Researcher', 'Applied Econometrician', 'Data Analyst (R • Python)', 'AI Workflow Developer'], []);
+  const roles = useMemo(() => ['Economics Researcher', 'Applied Econometrician', 'Data Analyst (R • Python)'], []);
   const [typed, setTyped] = useState('');
   const [roleIdx, setRoleIdx] = useState(0);
   const [charIdx, setCharIdx] = useState(0);
@@ -828,7 +800,7 @@ function ProjectsSection() {
   return (
     <section id="projects" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Projects" title="Research &amp; Quantitative Projects" description="Selected empirical, quantitative-finance, and AI-for-research projects — written primarily in Python and R with reproducibility in mind." />
+        <SectionHeader eyebrow="Projects" title="Research &amp; Quantitative Projects" description="Selected empirical and quantitative-finance projects — written primarily in Python and R with reproducibility in mind." />
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.1 }} variants={stagger} className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {PROJECTS.map((p) => (
             <motion.div key={p.name} variants={fadeUp}>
@@ -907,7 +879,7 @@ function ExperienceSection() {
   return (
     <section id="experience" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionHeader eyebrow="Experience" title="Research &amp; Professional Work" description="Independent empirical research, research assistantship, and AI-workflow development for academic use." />
+        <SectionHeader eyebrow="Experience" title="Research &amp; Professional Work" description="Independent empirical research and academic peer-mentoring roles." />
         <div className="space-y-6">
           {EXPERIENCE.map((e, i) => (
             <Reveal key={e.org} variants={i % 2 === 0 ? slideLeft : slideRight}>
@@ -1053,20 +1025,6 @@ function AchievementsSection() {
 }
 
 function ContactSection() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [loading, setLoading] = useState(false);
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.message) { toast.error('Please fill in your name, email, and message.'); return; }
-    setLoading(true);
-    try {
-      const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
-      const data = await res.json();
-      if (res.ok) { toast.success('Message sent — I’ll get back to you soon.'); setForm({ name: '', email: '', subject: '', message: '' }); }
-      else { toast.error(data?.error || 'Something went wrong.'); }
-    } catch (err) { toast.error('Network error. Please try again.'); }
-    finally { setLoading(false); }
-  };
   const contactLinks = [
     { icon: Mail, label: 'Email', value: PROFILE.email, href: `mailto:${PROFILE.email}` },
     { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/bhavya-mohan', href: PROFILE.socials.linkedin },
@@ -1079,37 +1037,9 @@ function ContactSection() {
     <section id="contact" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeader eyebrow="Contact" title="Let’s work together." description="For research collaborations, graduate-admissions correspondence, or any academic enquiry — please write to me. I read every message." />
-        <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
-          <Reveal variants={slideLeft}>
-            <form onSubmit={submit} className="glass-strong space-y-4 rounded-2xl p-6 md:p-8">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="text-[11px] uppercase tracking-widest text-white/50">Name</label>
-                  <Input className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Your full name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-                </div>
-                <div>
-                  <label className="text-[11px] uppercase tracking-widest text-white/50">Email</label>
-                  <Input type="email" className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="you@institution.edu" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-                </div>
-              </div>
-              <div>
-                <label className="text-[11px] uppercase tracking-widest text-white/50">Subject</label>
-                <Input className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Research collaboration, RA position, admissions query…" value={form.subject} onChange={(e) => setForm({ ...form, subject: e.target.value })} />
-              </div>
-              <div>
-                <label className="text-[11px] uppercase tracking-widest text-white/50">Message</label>
-                <Textarea rows={6} className="mt-1 border-white/10 bg-white/[0.03] text-white placeholder:text-white/30 focus-visible:ring-blue-500" placeholder="Tell me about your project or enquiry…" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
-              </div>
-              <div className="flex items-center justify-between">
-                <p className="text-[11px] text-white/40">Typically replies within 48 hours.</p>
-                <Button type="submit" disabled={loading} className="btn-ripple rounded-full bg-white px-5 text-black hover:bg-white/90">
-                  {loading ? 'Sending...' : (<><Send className="mr-1.5 h-3.5 w-3.5" /> Send message</>)}
-                </Button>
-              </div>
-            </form>
-          </Reveal>
-          <Reveal variants={slideRight}>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <Reveal variants={fadeUp}>
+          <div className="mx-auto max-w-4xl">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {contactLinks.map((c) => (
                 <a key={c.label} href={c.href} target={c.href?.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="glass group flex items-center gap-3 rounded-2xl p-4 transition-all hover:-translate-y-0.5 hover:border-white/25">
                   <div className="grid h-10 w-10 flex-none place-items-center rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 ring-1 ring-white/10"><c.icon className="h-4 w-4 text-blue-300" /></div>
@@ -1120,7 +1050,7 @@ function ContactSection() {
                   <ExternalLink className="ml-auto h-3.5 w-3.5 text-white/30 transition-colors group-hover:text-white/80" />
                 </a>
               ))}
-              <a href={PROFILE.resumeUrl} download className="glass group col-span-1 flex items-center gap-3 rounded-2xl p-4 transition-all hover:-translate-y-0.5 hover:border-white/25 sm:col-span-2">
+              <a href={PROFILE.resumeUrl} download className="glass group flex items-center gap-3 rounded-2xl p-4 transition-all hover:-translate-y-0.5 hover:border-white/25 sm:col-span-2 lg:col-span-3">
                 <div className="grid h-10 w-10 flex-none place-items-center rounded-lg bg-gradient-to-br from-emerald-400/20 to-blue-500/20 ring-1 ring-white/10"><Download className="h-4 w-4 text-emerald-300" /></div>
                 <div>
                   <p className="text-[11px] uppercase tracking-widest text-white/50">Download CV</p>
@@ -1129,8 +1059,9 @@ function ContactSection() {
                 <ExternalLink className="ml-auto h-3.5 w-3.5 text-white/30 transition-colors group-hover:text-white/80" />
               </a>
             </div>
-          </Reveal>
-        </div>
+            <p className="mt-8 text-center text-xs text-white/40">Typically replies within 48 hours.</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
