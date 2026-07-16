@@ -96,7 +96,7 @@ const PROFILE = {
   socials: {
     github: 'https://github.com/mohanbhavya98',
     linkedin: 'https://www.linkedin.com/in/bhavya-mohan-94998930b?utm_source=share_via&utm_content=profile&utm_medium=member_android',
-    ssrn: 'https://hq.ssrn.com/submissions/MyPapers.cfm?partid=11212508',
+    ssrn: 'https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=11212508',
   },
 };
 
@@ -118,7 +118,7 @@ const NAV_LINKS = [
  * ==========================================================================*/
 const RESEARCH = [
   {
-    year: '2024',
+    year: '2025',
     title:
       'The Resurrection of the Trade-Off: An Empirical Re-examination of the Expectations-Augmented Phillips Curve in the Post-Pandemic Era',
     status: 'Available on SSRN',
@@ -131,7 +131,7 @@ const RESEARCH = [
     methods: ['Time-Series Regression', 'Expectations-Augmented Phillips Curve', 'Structural Break Analysis'],
     dataset: 'Federal Reserve Economic Data (FRED)',
     keywords: ['Macroeconomics', 'Phillips Curve', 'Inflation', 'Unemployment', 'Federal Reserve', 'Monetary Policy', 'Time Series'],
-    links: { paper: PROFILE.socials.ssrn, pdf: PROFILE.socials.ssrn, code: null },
+    links: { paper: 'https://ssrn.com/abstract=6635519', pdf: '/papers/paper_1.pdf', code: null },
   },
   {
     year: '2025',
@@ -148,10 +148,10 @@ const RESEARCH = [
     dataset: 'PLFS 2019–20',
     keywords: ['Labour Economics', 'Returns to Education', 'Human Capital', 'PLFS', 'Formal Sector', 'Informal Sector', 'Applied Econometrics'],
     links: { paper: null, pdf: null, code: null },
-    presentationCert: '/certificates/paper-presentation-lsr.pdf',
+    presentationCert: '/certificates/LSR-Conference.jpeg',
   },
   {
-    year: '2025',
+    year: '2026',
     title:
       'Returns to Education in India: A Gender-Based Analysis using Instrumental Variables (PLFS 2023–24)',
     status: 'Published • SSRN',
@@ -164,10 +164,10 @@ const RESEARCH = [
     methods: ['Instrumental Variables (IV)', 'Two-Stage Least Squares (2SLS)', 'Causal Inference', 'Interaction Models'],
     dataset: 'PLFS 2023–24',
     keywords: ['Applied Econometrics', 'Instrumental Variables', 'Causal Inference', 'Returns to Education', 'Gender Wage Gap', 'Labour Economics', 'PLFS'],
-    links: { paper: PROFILE.socials.ssrn, pdf: PROFILE.socials.ssrn, code: null },
+    links: { paper: 'http://ssrn.com/abstract=6602839', pdf: '/papers/paper_3.pdf', code: null },
   },
   {
-    year: '2025',
+    year: '2026',
     title:
       'Returns to Education in India using the Heckman Two-Step Sample Selection Model (PLFS 2023–24)',
     status: 'Under Review',
@@ -201,7 +201,7 @@ const PROJECTS = [
     description:
       'A quantitative-macro pipeline that classifies U.S. macroeconomic states (expansion, slowdown, recession, recovery) directly from macro time-series using Gaussian Hidden Markov Models. Includes state-conditional summary statistics and regime-switching diagnostics.',
     tech: ['Python', 'Machine Learning', 'HMM', 'Finance', 'Time Series'],
-    github: 'https://github.com/mohanbhavya98',
+    github: 'https://github.com/mohanbhavya98/macro_regime_hmm_research',
     demo: null,
   },
   {
@@ -209,7 +209,7 @@ const PROJECTS = [
     description:
       'End-to-end quant research toolkit covering CAPM and multi-factor pricing, portfolio optimisation, and Black–Scholes derivative pricing with risk metrics (VaR, Sharpe, drawdowns). Built as a reproducible research pipeline.',
     tech: ['Python', 'Portfolio Optimisation', 'Black–Scholes', 'CAPM', 'Factor Models', 'Risk Metrics'],
-    github: 'https://github.com/mohanbhavya98',
+    github: 'https://github.com/mohanbhavya98/quant_research_portfolio',
     demo: null,
   },
   {
@@ -217,7 +217,7 @@ const PROJECTS = [
     description:
       'A reproducible Quarto dashboard visualising the returns-to-education results from the PLFS 2019–20 and 2023–24 studies — including OLS, IV, and Heckman-corrected estimates by gender and employment category.',
     tech: ['Python', 'R', 'Quarto', 'Econometrics'],
-    github: 'https://github.com/mohanbhavya98',
+    github: 'https://mohanbhavya98.github.io/plfs-returns-to-education/',
     demo: null,
   },
   {
@@ -225,7 +225,7 @@ const PROJECTS = [
     description:
       'Designed and developed a fully responsive academic portfolio using Next.js, React, Tailwind CSS and Framer Motion to showcase research publications, quantitative projects, academic achievements and professional experience. The website integrates smooth animations, interactive timelines and modern UI principles while serving as a long-term research portfolio.',
     tech: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
-    github: 'https://github.com/mohanbhavya98',
+    github: 'https://github.com/mohanbhavya98/bhavya-portfolio',
     demo: null,
   },
   {
@@ -347,7 +347,7 @@ const EXPERIENCE = [
  * ==========================================================================*/
 const ACHIEVEMENTS = [
   { icon: Trophy, title: 'Paper Presentation — International Conference', detail: 'Lady Shri Ram College, University of Delhi' },
-  { icon: Award, title: 'International Commerce Olympiad — Gold Medal', detail: 'School Rank 1 • International Rank 457', cert: '/certificates/international-commerce-olympiad.pdf' },
+  { icon: Award, title: 'International Commerce Olympiad — Gold Medal', detail: 'School Rank 1 • International Rank 457', cert: '/certificates/ICO.jpeg' },
   { icon: Globe, title: 'Agile COIL — Hiroshima University', detail: 'Social entrepreneurship collaborative project' },
   { icon: Star, title: 'GRE', detail: 'Score: 322' },
   { icon: BookOpen, title: 'IELTS', detail: 'Overall Band: 7.5' },
@@ -355,9 +355,9 @@ const ACHIEVEMENTS = [
 ];
 
 const CERTIFICATIONS = [
-  { title: 'Learning Pod Leader — IIM Bangalore (BBA DBE)', detail: 'Certificate of service for peer mentoring, AY 2025–26', cert: '/certificates/learning-pod-leader.pdf' },
-  { title: 'Agile COIL — Hiroshima University', detail: 'Collaborative Online International Learning', cert: '/certificates/agile-coil.pdf' },
-  { title: 'Accenture — Data Analytics & Visualization Job Simulation', detail: 'Applied data analytics & visualization job simulation', cert: '/certificates/accenture-data-analytics.pdf' },
+  { title: 'Learning Pod Leader — IIM Bangalore (BBA DBE)', detail: 'Certificate of service for peer mentoring, AY 2025–26', cert: '/certificates/pod-leader.jpeg' },
+  { title: 'Agile COIL — Hiroshima University', detail: 'Collaborative Online International Learning', cert: '/certificates/agile-coil.jpeg' },
+  { title: 'Accenture — Data Analytics & Visualization Job Simulation', detail: 'Applied data analytics & visualization job simulation', cert: '/certificates/accenture.jpeg' },
   { title: 'IIM Bangalore — Digital Business & Entrepreneurship', detail: 'First-year certificate programme completed' },
 ];
 
